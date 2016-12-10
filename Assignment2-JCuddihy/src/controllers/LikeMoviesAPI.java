@@ -63,6 +63,7 @@ public class LikeMoviesAPI
 	 surnameIndex.put(surname, user);
 	 return user;
 	 }
+	 
 	 public void addMovie(Long id,String title, String year, String url)
 	 {
 		 Optional<Rating> rating = Optional.ofNullable(ratingsIndex.get(id));
@@ -70,7 +71,7 @@ public class LikeMoviesAPI
 		    {
 		      rating.get().choice.add(new Movie(title, year, url));
 		    }
-		  }
+	 }
 	 
 
 	public  void removeUser(Long id) {

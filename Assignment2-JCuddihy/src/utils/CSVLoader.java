@@ -5,10 +5,13 @@ import java.io.File;
 
 import edu.princeton.cs.introcs.In;
 import models.Rating;
+import models.User;
+import models.Movie;
 
+@SuppressWarnings("hiding")
 public class CSVLoader<User,Movie,Rating> {
 	
-	 public List <User> loadUsers(String filename) throws Exception
+	 public void loadUsers(String User) throws Exception
 	 {
 		 File usersFile = new File("data_movieLens/users5.dat");
 	        In inUsers = new In(usersFile);
@@ -36,7 +39,7 @@ public class CSVLoader<User,Movie,Rating> {
 	 
 	 }
 
-	 public List <Movie> loadMovies (String filename) throws Exception
+	 public void loadMovies (String Movie) throws Exception
 	 {
 		 File movieFile = new File("data_movieLens/items5.dat");
 	        In inMovie = new In(movieFile);
@@ -63,7 +66,7 @@ public class CSVLoader<User,Movie,Rating> {
 
 
 	 }
-	 public List <Rating> loadRatings (String filename) throws Exception
+	 public void loadRatings (String Rating) throws Exception
 	 {
 		 File ratingFile = new File("data_movieLens/ratings5.dat");
 	        In inRating = new In(ratingFile);
