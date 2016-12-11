@@ -6,28 +6,54 @@ import java.util.List;
 import com.google.common.base.Objects;
 import utils.ToJsonString;
 
+/**
+ * Ratings class that is a representation of what a rating object is.
+ * @author JohnCuddihy
+ * @version 2
+ * @date 11/12/2016
+ *
+ */
+
 public class Rating {
 	
 	static Long   counter = 0l;
 	  
-	  public Long   id;
-	  public String type;
+	  public Long   userId;
+	  public Long movieId;
 	  public double score;
-	  public String preference;
+	  public Long id;
 	  
 	  public List<Movie> choice = new ArrayList<>();
 	 
 	  public Rating()
 	  {
 	  }
-	  
-	  public Rating(String type,String preference, double score)
+	  /**
+		 * Two constructors,
+		 * Second one when data is parsed in dataInput
+		 * @param id
+		 * @param userId
+		 * @param movieId
+		 * @param score
+		 */
+	  public Rating(long userId,long movieId, double score)
 	  {
-	    this.id        = counter++;
-	    this.type      = type;
-	    this.score     = score;
-	    this.preference = preference;
+	    this.userId        = userId;
+	    this.movieId       = movieId;
+	    this.score         = score;
+	    
 	  }
+	  
+	  
+		public Rating(long id, long userId, long movieId, double score){
+			this.id = id;
+			if(id >= counter){
+				counter = id + 1;
+			}
+			this.userId = userId;
+			this.movieId = movieId;
+			this.score = score;
+		}
 	  
 	  @Override
 	
@@ -39,8 +65,12 @@ public class Rating {
 	  @Override  
 	  public int hashCode()  
 	  {  
-	     return Objects.hashCode(this.id, this.type,this.preference, this.score);  
+	     return Objects.hashCode(this.userId, this.movieId, this.score);  
 	  } 
+	  
+	  public int compareTo(Rating that){
+			return Double.compare(this.getRating(), that.getRating());
+		}
 	  
 	  @Override
 	  public boolean equals(final Object obj)
@@ -48,9 +78,9 @@ public class Rating {
 	    if (obj instanceof Rating)
 	    {
 	      final Rating other = (Rating) obj;
-	      return Objects.equal(type,      other.type) 
+	      return Objects.equal(userId,      other.userId) 
 	          && Objects.equal(score,     other.score)
-	          && Objects.equal(preference,other.preference)
+	          && Objects.equal(movieId,other.movieId)
 	          && Objects.equal(choice,     other.choice);     
 	    }
 	    else
@@ -58,5 +88,34 @@ public class Rating {
 	      return false;
 	    }
 	  }
+	  
+	  /**
+		 * Setters and Getters
+		 * @return
+		 */
+		
+		public double getRating(){
+			return score;
+		}
+		
+		public void setRating(double score){
+			this.score = score;
+		}
+		
+		public long getUserId(){
+			return userId;
+		}
+		
+		public void setUserId(long userId){
+			this.userId = userId;
+		}
+		
+		public long getMovieId(){
+			return movieId;
+		}
+		
+		public void setMovieId(long movieId){
+			this.movieId = movieId;
+		}
 
 }

@@ -4,6 +4,14 @@ import models.Movie;
 import models.Rating;
 import models.User;
 
+/**
+ * Model Test class 
+ * @author John Cuddihy
+ * @version 2
+ * @date 11/12/2016
+ *
+ */
+
 public class ModelTest {
 
 	
@@ -17,8 +25,8 @@ public class ModelTest {
 
 	  public static Rating[] ratings =
 	  {
-	    new Rating ("Ben Hur",  "like", 7.0),
-	    new Rating ("Up",  "like",    8.0),
+	    new Rating (),
+	    new Rating ("like", "Up",    8.0),
 	    new Rating ("ET",   "dislike",   2.5),
 	    new Rating ("Planes",  "dislike",   4.5),
 	    new Rating ("Cars", "like", 7.5)

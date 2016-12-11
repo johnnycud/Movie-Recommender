@@ -10,6 +10,15 @@ import com.bea.xml.stream.util.Stack;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 
+/**
+ * XMLSerializer class 
+ * Stores data in xml format.
+ * @author John Cuddihy
+ * @version 2
+ * @date 11/12/2016
+ *
+ */
+
 public class XMLSerializer implements Serializer {
 	
 	private Stack stack = new Stack();
@@ -39,16 +48,16 @@ public class XMLSerializer implements Serializer {
 		ObjectOutputStream os = null;
 		 try
 		 {
-		 XStream xstream = new XStream(new DomDriver());
-		 os = xstream.createObjectOutputStream(new FileWriter(file));
-		 os.writeObject(stack);
+			 XStream xstream = new XStream(new DomDriver());
+			 os = xstream.createObjectOutputStream(new FileWriter(file));
+			 os.writeObject(stack);
 		 }
 		 finally
-		 {
-		 if (os != null)
-		 {
-		 os.close();
-		 }
+			 {
+			 if (os != null)
+			 {
+			      os.close();
+			 }
 		 }
 		
 
@@ -60,15 +69,15 @@ public class XMLSerializer implements Serializer {
 		ObjectInputStream is = null;
 		 try
 		 {
-		 XStream xstream = new XStream(new DomDriver());
-		 is = xstream.createObjectInputStream(new FileReader(file));
-		 stack = (Stack) is.readObject();
+			 XStream xstream = new XStream(new DomDriver());
+			 is = xstream.createObjectInputStream(new FileReader(file));
+			 stack = (Stack) is.readObject();
 		 }
 		 finally
 		 {
-		 if (is != null)
-		 {
-		 is.close();
+			 if (is != null)
+			 {
+			 is.close();
 		 }
 		 }
 		

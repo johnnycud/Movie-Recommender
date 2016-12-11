@@ -7,6 +7,14 @@ import utils.CSVLoader;
 import utils.Serializer;
 import utils.ToJsonString;
 
+/**
+ * MovieAPI class 
+ * @author John Cuddihy
+ * @version 2
+ * @date 11/12/2016
+ *
+ */
+
 public class MovieAPI {
 	
 	

@@ -5,6 +5,14 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+/**
+ * FileLogger class 
+ * @author John Cuddihy
+ * @version 2
+ * @date 11/12/2016
+ *
+ */
+
 public class FileLogger
 {
   private static FileLogger logger;

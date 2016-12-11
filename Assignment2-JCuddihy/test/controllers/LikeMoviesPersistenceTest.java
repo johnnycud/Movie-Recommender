@@ -16,6 +16,14 @@ import static model.ModelTest.users;
 import static model.ModelTest.ratings;
 import static model.ModelTest.movies;
 
+/**
+ * This is a Junit test class that test persistence in the app.
+ * @author John Cuddihy
+ * @version 2
+ * @date 11/12/2016
+ *
+ */
+
 public class LikeMoviesPersistenceTest
 {
   LikeMoviesAPI likeMovies;
@@ -27,11 +35,11 @@ public class LikeMoviesPersistenceTest
     	likeMovies.addUser(user.firstName, user.surname, user.gender, user.age, user.occupation);
     }
     User user1 = likeMovies.getUserBySurname(users[0].surname);
-    Rating rating = likeMovies.rateAMovie(user1.id,ratings[0].type, ratings[0].preference, ratings[0].score);
-    likeMovies.rateAMovie(user1.id, ratings[1].type, ratings[1].type, ratings[1].score);
+    Rating rating = likeMovies.rateAMovie(user1.id,ratings[0].userId, ratings[0].movieId, ratings[0].score);
+    likeMovies.rateAMovie(user1.id, ratings[1].userId, ratings[1].userId, ratings[1].score);
     User user2 = likeMovies.getUserBySurname(users[1].surname);
-    likeMovies.rateAMovie(user2.id, ratings[2].type, ratings[2].type, ratings[2].score);
-    likeMovies.rateAMovie(user2.id, ratings[3].type, ratings[3].type, ratings[3].score);
+    likeMovies.rateAMovie(user2.id, ratings[2].userId, ratings[2].userId, ratings[2].score);
+    likeMovies.rateAMovie(user2.id, ratings[3].userId, ratings[3].userId, ratings[3].score);
     
     for (Movie movie : movies)
     {
@@ -49,8 +57,8 @@ public class LikeMoviesPersistenceTest
     assertEquals(users.length, likeMovies.getUsers().size());
     assertEquals(2, likeMovies.getUserBySurname(users[0].surname).rating.size());
     assertEquals(2,likeMovies.getUserBySurname(users[1].surname).rating.size());   
-    Long ratingID = likeMovies.getUserBySurname(users[0].surname).rating.keySet().iterator().next();
-    assertEquals(movies.length, likeMovies.getUserRating(ratingID).choice.size());   
+    //Long ratingID = likeMovies.getUserBySurname(users[0].surname).rating.keySet().iterator().next();
+    assertEquals(movies.length, likeMovies.getUserRating(ratingsId).choice.size());   
   }
 
   void deleteFile(String fileName)

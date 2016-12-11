@@ -4,13 +4,21 @@ import static org.junit.Assert.*;
 import static model.ModelTest.ratings;
 import org.junit.Test;
 
+/**
+ * Rating class 
+ * @author John Cuddihy
+ * @version 2
+ * @date 11/12/2016
+ *
+ */
+
 public class RatingTest {
 
 	@Test
 	  public void testCreate()
 	  {
-	    assertEquals ("Ben Hur", ratings[0].type);
-	    assertEquals ("like", ratings[0].preference);
+	    assertEquals ("Ben Hur", ratings[0].movieId);
+	    assertEquals ("1", ratings[0].userId);
 	  }
 
 	  @Test

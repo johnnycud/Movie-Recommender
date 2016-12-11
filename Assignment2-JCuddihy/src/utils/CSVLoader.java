@@ -1,12 +1,19 @@
 package utils;
 
-import java.awt.List;
 import java.io.File;
 
 import edu.princeton.cs.introcs.In;
 import models.Rating;
 import models.User;
 import models.Movie;
+
+/**
+ * CSVLoader class 
+ * @author John Cuddihy
+ * @version 2
+ * @date 11/12/2016
+ *
+ */
 
 @SuppressWarnings("hiding")
 public class CSVLoader<User,Movie,Rating> {

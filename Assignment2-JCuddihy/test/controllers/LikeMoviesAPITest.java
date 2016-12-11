@@ -66,10 +66,10 @@ public class LikeMoviesAPITest
   }  
   
   @Test
-  public void testAddActivity()
+  public void testAddRating()
   {
     User patty = likeMovie.getUserBySurname("gilroy");
-    Rating rating = likeMovie.rateAMovie(patty.id, ratings[0].type, ratings[0].preference, ratings[0].score);
+    Rating rating = likeMovie.addRating(patty.id, ratings[0].userId, ratings[0].movieId, ratings[0].score);
     Rating returnedRating = likeMovie.getUserRating(rating.id);
     assertEquals(ratings[0],  returnedRating);
     assertNotSame(ratings[0], returnedRating);
@@ -79,28 +79,28 @@ public class LikeMoviesAPITest
   public void testAddRatingWithSingleMovie()
   {
     User mike = likeMovie.getUserBySurname("gilman");
-    Long ratingId = likeMovie.rateAMovie(mike.id, ratings[3].type, ratings[3].preference, ratings[3].score).id;
+    Long ratingId = likeMovie.addRating(mike.id, ratings[3].userId, ratings[3].movieId, ratings[3].score).id;
 
-    likeMovie.addMovie(ratingId, movies[3].title, movies[3].year, null);
+    likeMovie.addMovie(ratingId, movies[3].title, movies[3].year, movies[3].url);
 
     Rating rating = likeMovie.getUserRating(ratingId);
     assertEquals (1, rating.choice.size());
-    assertEquals( movies[3].title,  rating.choice.get(3).year);
-    assertEquals( movies[3].year, rating.choice.get(3).title);   
+    assertEquals( movies[3].title,  rating.choice.get(3).year,rating.choice.get(3).url);
+    assertEquals( movies[3].year, rating.choice.get(3).title, rating.choice.get(3).url);   
   }
   
   @Test
   public void testAddActivityWithMultipleLocation()
   {
     User patty = likeMovie.getUserBySurname("gilroy");
-    Long activityId = likeMovie.rateAMovie(patty.id, ratings[0].type, ratings[0].type, ratings[0].score).id;
+    Long ratingId = likeMovie.addRating(patty.id, ratings[0].userId, ratings[0].movieId, ratings[0].score).id;
 
     for (Movie movie : movies)
     {
-    	likeMovie.addMovie(activityId, movie.title, movie.year, null);      
+    	likeMovie.addMovie(ratingId, movie.title, movie.year, null);      
     }
 
-    Rating rating = likeMovie.getUserRating(activityId);
+    Rating rating = likeMovie.getUserRating(ratingId);
     assertEquals (movies.length, rating.choice.size());
     int i = 0;
     for (Movie movie : rating.choice)
